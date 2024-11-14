@@ -5,7 +5,7 @@ from app.db.postgresql.models import Base
 
 class DeviceInfo(Base):
    __tablename__ = "devices_info"
-   device_infos_id = Column(Integer, primary_key=True, autoincrement=False)
+   device_info_id = Column(Integer, primary_key=True, autoincrement=True)
    browser = Column(String)
    os = Column(String)
    device_id = Column(String)
@@ -13,6 +13,6 @@ class DeviceInfo(Base):
 
    terrorist = relationship(
        "Terrorist",
-       back_populates="devices_info",
+       back_populates="device_info",
        uselist=False
    )

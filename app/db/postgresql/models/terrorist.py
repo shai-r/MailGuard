@@ -1,13 +1,13 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
 from app.db.postgresql.models import Base
 
 class Terrorist(Base):
    __tablename__ = "terrorists"
-   terrorist_id = Column(Integer, primary_key=True, autoincrement=False)
-   email = Column(String)
-   username = Column(Integer, ForeignKey('countries.country_id'))
+   terrorist_id = Column(Integer, primary_key=True, autoincrement=True)
+   email = Column(String, unique=True)
+   username = Column(String)
    ip_address = Column(String)
    created_at = Column(String)
 
@@ -23,12 +23,12 @@ class Terrorist(Base):
    )
    location = relationship(
        "Location",
-       back_populates="terrorists",
+       back_populates="terrorist",
        uselist=False
    )
    device_info = relationship(
        "DeviceInfo",
-       back_populates="terrorists",
+       back_populates="terrorist",
        uselist=False
    )
 

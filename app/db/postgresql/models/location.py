@@ -5,7 +5,7 @@ from app.db.postgresql.models import Base
 
 class Location(Base):
    __tablename__ = "locations"
-   location_id = Column(Integer, primary_key=True, autoincrement=False)
+   location_id = Column(Integer, primary_key=True, autoincrement=True)
    latitude = Column(Float)
    longitude = Column(Float)
    city = Column(String)
@@ -14,6 +14,6 @@ class Location(Base):
 
    terrorist = relationship(
        "Terrorist",
-       back_populates="locations",
+       back_populates="location",
        uselist=False
    )
