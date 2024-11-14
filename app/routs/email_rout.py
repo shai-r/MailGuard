@@ -17,8 +17,13 @@ def get_emails():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
 @emails_blueprint.route('/email/<string:email>', methods=['GET'])
 def get_terrorist_by_email(email: str):
-    x = get_all_terrorist_by_email(email)
-    print(x)
-    return jsonify(x), 200
+    try:
+        data = get_all_terrorist_by_email(email)
+        if not data:
+            return jsonify({"error": "Email not found"}), 404
+        return jsonify(data), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
