@@ -5,7 +5,7 @@ from app.db.postgresql.models import Base
 
 class ExplosiveSentence(Base):
    __tablename__ = "suspicious_explosive_content"
-   hostage_sentence_id = Column(Integer, primary_key=True, autoincrement=True)
+   explosive_sentence_id = Column(Integer, primary_key=True, autoincrement=True)
    sentence = Column(String)
    terrorist_id = Column(Integer, ForeignKey('terrorists.terrorist_id'))
 

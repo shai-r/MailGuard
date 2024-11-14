@@ -10,7 +10,7 @@ load_dotenv(verbose=True)
 
 def consume_hostage_messages():
     consumer = KafkaConsumer(
-        os.environ['ALL_MESSAGES_TOPIC'],
+        os.environ['HOSTAGE_MESSAGES'],
         bootstrap_servers=os.environ['BOOTSTRAP_SERVERS'],
         value_deserializer=lambda v: json.loads(v.decode('utf-8')),
         auto_offset_reset='earliest'

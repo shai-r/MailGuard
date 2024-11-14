@@ -1,7 +1,6 @@
 from typing import List
 
 from returns.maybe import Maybe
-from sqlalchemy.orm import joinedload
 
 from app.db.postgresql.models import Terrorist, ExplosiveSentence, HostageSentence, Location, DeviceInfo
 from app.db.postgresql.postgresql_database import session_maker
@@ -25,12 +24,12 @@ def find_terrorists_by_username(terrorist_username: str) -> List[Terrorist]:
         return session.query(Terrorist).filter(Terrorist.username == terrorist_username)
 
 
-def create_new_terrorist_if_not_exists(new_terrorist: Terrorist) -> Maybe[Terrorist]:
-    terrorist_exists = find_terrorist_by_email(new_terrorist.email).value_or(None)
+def create_new_terrorist_if_not_exists(new_terrorist: Terrorist) -> Terrorist:
+    terrorist_exists = find_terrorist_by_email(new_terrorist.email)
     if terrorist_exists:
-        return Maybe.from_optional(None)
+        return terrorist_exists
     with session_maker() as session:
         session.add(new_terrorist)
         session.commit()
         session.refresh(new_terrorist)
-        return Maybe.from_optional(new_terrorist)
+        return new_terrorist

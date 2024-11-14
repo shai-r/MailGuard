@@ -1,5 +1,3 @@
-from dataclasses import asdict
-
 from flask import request, jsonify, Blueprint
 
 from app.services.kafka_services.produce_service import produce_new_email_by_topic, produce_to_sql

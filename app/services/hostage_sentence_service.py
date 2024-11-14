@@ -22,15 +22,15 @@ def insert_email_into_hostage_sql(email: dict):
                 country=email['location']['country'] if 'country' in email['location'].keys() else None
             )
         )
-    ).value_or(None)
+    )
     if not terrorist:
         return
     terrorist_id = terrorist.terrorist_id
 
     for sentence in email['sentences']:
-        hostage_sentence_id = create_new_hostage_sentence(
+        create_new_hostage_sentence(
             HostageSentence(
                 sentence=sentence,
                 terrorist_id=terrorist_id
             )
-        ).hostage_sentence_id
+        )
