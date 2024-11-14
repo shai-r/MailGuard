@@ -4,7 +4,7 @@ import json
 from dotenv import load_dotenv
 from kafka import KafkaConsumer
 
-from app.db.mongodb_db.mongodb_database import mongodb_messages_collection
+from app.db.mongodb.mongodb_database import mongodb_messages_collection
 
 load_dotenv(verbose=True)
 

@@ -4,5 +4,5 @@ Base = declarative_base()
 
 from .terrorist import Terrorist
 from .location import Location
-from .sentence import Sentence
+from .hostage_sentences import Sentence
 from .device_info import DeviceInfo

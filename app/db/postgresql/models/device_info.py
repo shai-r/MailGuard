@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
-from app.db.postgresql_db.models import Base
+from app.db.postgresql.models import Base
 
 class DeviceInfo(Base):
    __tablename__ = "devices_info"

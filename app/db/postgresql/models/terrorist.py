@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
-from app.db.postgresql_db.models import Base
+from app.db.postgresql.models import Base
 
 class Terrorist(Base):
    __tablename__ = "terrorists"
@@ -11,8 +11,13 @@ class Terrorist(Base):
    ip_address = Column(String)
    created_at = Column(String)
 
-   sentences = relationship(
-       "Sentence",
+   hostage_sentences = relationship(
+       "HostageSentence",
+       back_populates="terrorist",
+       cascade="all, delete-orphan"
+   )
+   explosive_sentences = relationship(
+       "ExplosiveSentence",
        back_populates="terrorist",
        cascade="all, delete-orphan"
    )

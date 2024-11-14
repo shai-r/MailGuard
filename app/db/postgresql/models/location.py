@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Float
 from sqlalchemy.orm import relationship
 
-from app.db.postgresql_db.models import Base
+from app.db.postgresql.models import Base
 
 class Location(Base):
    __tablename__ = "locations"
